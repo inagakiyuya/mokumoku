@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create] do
+    resource :relationships, only: [:create, :destroy]
+  end
   resources :events do
     collection do
       get :future
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
 
   namespace :mypage do
     root 'event_calendars#show'
+    get 'profiles/:id', to: 'profiles#view'
     resource :event_calendar, only: %i[show]
     resources :notifications, only: %i[index]
     resource :notification_setting, only: %i[show update]
