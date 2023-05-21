@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   namespace :mypage do
     root 'event_calendars#show'
-    get 'profiles/:id', to: 'profiles#view'
+    get 'profiles/:id', to: 'profiles#index'
     resource :event_calendar, only: %i[show]
     resources :notifications, only: %i[index]
     resource :notification_setting, only: %i[show update]

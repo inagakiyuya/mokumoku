@@ -14,7 +14,7 @@ class Mypage::ProfilesController < Mypage::BaseController
     end
   end
 
-  def view
+  def index
     @user = User.find(params[:id])
   end
 
